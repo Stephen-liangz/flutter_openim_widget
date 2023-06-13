@@ -259,7 +259,7 @@ class EmojiLayout extends StatelessWidget {
           skinToneDialogBgColor: Colors.white,
           skinToneIndicatorColor: Colors.grey,
           enableSkinTones: true,
-          showRecentsTab: true,
+          // showRecentsTab: true,
           recentsLimit: 28,
           noRecents: Text(
             UILocalizations.recentlyUsed,

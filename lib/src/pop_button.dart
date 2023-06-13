@@ -56,8 +56,8 @@ class PopButton extends StatelessWidget {
     this.showArrow = true,
     this.barrierColor = Colors.transparent,
     this.arrowSize = 10.0,
-    this.horizontalMargin = 10.0,
-    this.verticalMargin = 10.0,
+    this.horizontalMargin = 16.0,
+    this.verticalMargin = 0.0,
     this.pressType = PressType.singleClick,
     this.menuBgColor = const Color(0xFF1B72EC),
     this.menuBgRadius = 10.0,
@@ -68,10 +68,10 @@ class PopButton extends StatelessWidget {
     this.menuItemHeight,
     this.menuItemWidth,
     this.menuItemTextStyle = const TextStyle(
-      fontSize: 14,
+      fontSize: 15,
       color: Colors.white,
     ),
-    this.menuItemIconSize = 18.0,
+    this.menuItemIconSize = 20.0,
     this.menuItemPadding,
     this.dividingLineColor = const Color(0xFFF0F0F0),
     this.dividingLineWidth = 1.0,
@@ -109,7 +109,6 @@ class PopButton extends StatelessWidget {
 
   Widget _buildPopBgView({Widget? child}) => Container(
         child: child,
-        // padding: EdgeInsets.symmetric(vertical: 4),
         decoration: BoxDecoration(
           color: menuBgColor,
           borderRadius: BorderRadius.circular(menuBgRadius),
@@ -134,14 +133,6 @@ class PopButton extends StatelessWidget {
           height: menuItemHeight,
           width: menuItemWidth,
           padding: menuItemPadding,
-          // decoration: BoxDecoration(
-          //   border: BorderDirectional(
-          //     bottom: BorderSide(
-          //       color: dividingLineColor,
-          //       width: dividingLineWidth,
-          //     ),
-          //   ),
-          // ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

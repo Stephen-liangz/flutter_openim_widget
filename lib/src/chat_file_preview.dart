@@ -57,7 +57,6 @@ class _ChatFilePreviewState extends State<ChatFilePreview> {
           _value = count / total;
           if (count == total) {
             widget.onDownloadFinished?.call();
-            Navigator.pop(context);
           }
         });
       },

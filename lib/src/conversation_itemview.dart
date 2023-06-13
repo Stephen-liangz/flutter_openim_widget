@@ -61,7 +61,6 @@ class ConversationItemView extends StatelessWidget {
     this.notDisturb = false,
     this.extentRatio = 0.5,
     this.isUserGroup = false,
-    // this.isPinned = false,
     this.titleStyle = const TextStyle(
       fontSize: 16,
       color: Color(0xFF333333),

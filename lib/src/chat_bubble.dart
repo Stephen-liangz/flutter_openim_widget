@@ -23,20 +23,15 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: constraints,
-      margin: EdgeInsets.only(right: 10.w, left: 10.w, bottom: 2.h),
+      margin: EdgeInsets.only(right: 8.w, left: 0.w, ),
       padding: EdgeInsets.symmetric(
-        horizontal: 7.w,
-        vertical: 7.h,
+        horizontal: 10.w,
+        vertical: 10.h,
       ),
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(bubbleType == BubbleType.send ? 8 : 1),
-          topRight: Radius.circular(bubbleType == BubbleType.send ? 1 : 8),
-          bottomLeft: Radius.circular(8),
-          bottomRight: Radius.circular(8),
-        ),
+        borderRadius: BorderRadius.all(Radius.circular(3.r)),
       ),
       child: child,
     );

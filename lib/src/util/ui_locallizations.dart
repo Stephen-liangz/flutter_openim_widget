@@ -18,15 +18,14 @@ class UILocalizations {
       'cancelTop': 'Remove from Top',
       'remove': 'Delete',
       'markRead': 'Mark as Read',
-      "album": "Album",
       "camera": "Camera",
       "videoCall": "Video Call",
       "picture": "Picture",
       "video": "Video",
       "voice": "Voice",
-      "location": "Location",
-      "file": "File",
-      "carte": "Contact Card",
+      "collect": "Collect",
+      "voiceInput": "Voice Input",
+      "allProhibitions": "All Prohibitions",
       "voiceInput": "Voice Input",
       'haveRead': 'Have read',
       'groupHaveRead': '%s people have read',
@@ -72,15 +71,14 @@ class UILocalizations {
       'cancelTop': '取消置顶',
       'remove': '移除',
       'markRead': '标记为已读',
-      "album": "相册",
       "camera": "拍摄",
       "videoCall": "视频通话",
       "picture": "图片",
       "video": "视频",
       "voice": "语音",
-      "location": "位置",
-      "file": "文件",
-      "carte": "名片",
+      "collect": "收藏",
+      "voiceInput": "语音输入",
+      "allProhibitions": "全体禁言",
       "voiceInput": "语音输入",
       'haveRead': '已读',
       'groupHaveRead': '%s人已读',
@@ -131,25 +129,21 @@ class UILocalizations {
 
   static String get markRead => _value(key: 'markRead');
 
-  static String get album => _value(key: 'album');
+  static String get picture => _value(key: 'picture');
 
   static String get camera => _value(key: 'camera');
 
   static String get videoCall => _value(key: 'videoCall');
 
-  static String get picture => _value(key: 'picture');
-
   static String get video => _value(key: 'video');
 
   static String get voice => _value(key: 'voice');
 
-  static String get location => _value(key: 'location');
-
-  static String get file => _value(key: 'file');
-
-  static String get carte => _value(key: 'carte');
+  static String get collect => _value(key: 'collect');
 
   static String get voiceInput => _value(key: 'voiceInput');
+
+  static String get allProhibitions => _value(key: 'allProhibitions');
 
   static String get haveRead => _value(key: 'haveRead');
 

@@ -66,7 +66,7 @@ class ChatCarteView extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: 3.h, bottom: 4.h, left: 25.w),
             child: Text(
-              UILocalizations.carte,
+              UILocalizations.allProhibitions,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: Color(0xFF999999),

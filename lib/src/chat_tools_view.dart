@@ -102,7 +102,6 @@ class _ChatToolsViewState extends State<ChatToolsView>
           (items ?? _toolsItem(context)).map((e) => _toolsOption(e)).toList(),
     );*/
     return Container(
-      height: 190.h,
       color: Colors.white,
       child: Stack(
         children: [
@@ -124,7 +123,7 @@ class _ChatToolsViewState extends State<ChatToolsView>
       widget.margin ??
       EdgeInsets.symmetric(
         horizontal: 38.w,
-        vertical: 17.h,
+        vertical: 18.h,
       );
 
   Widget _buildToolsLayout() => Container(
@@ -136,7 +135,7 @@ class _ChatToolsViewState extends State<ChatToolsView>
             Column(
               children: [
                 _toolsOption(ToolsItem(
-                  label: UILocalizations.album,
+                  label: UILocalizations.picture,
                   style: toolsTextStyle,
                   image: _buildBtn(
                     icon: widget.albumIcon ?? ImageUtil.toolsAlbum(),
@@ -145,7 +144,7 @@ class _ChatToolsViewState extends State<ChatToolsView>
                 )),
                 _verticalSpacing,
                 _toolsOption(ToolsItem(
-                  label: UILocalizations.file,
+                  label: UILocalizations.voice,
                   style: toolsTextStyle,
                   image: _buildBtn(
                     icon: widget.fileIcon ?? ImageUtil.toolsFile(),
@@ -167,7 +166,7 @@ class _ChatToolsViewState extends State<ChatToolsView>
                 )),
                 _verticalSpacing,
                 _toolsOption(ToolsItem(
-                  label: UILocalizations.carte,
+                  label: UILocalizations.allProhibitions,
                   style: toolsTextStyle,
                   image: _buildBtn(
                     icon: widget.carteIcon ?? ImageUtil.toolsCarte(),
@@ -188,24 +187,11 @@ class _ChatToolsViewState extends State<ChatToolsView>
                   ),
                 )),
                 _verticalSpacing,
-                // _toolsOption(ToolsItem(
-                //   label: UILocalizations.voiceInput,
-                //   style: toolsTextStyle,
-                //   image: _buildBtn(
-                //     icon: widget.voiceInputIcon ?? ImageUtil.toolsVoiceInput(),
-                //     onTap: () {
-                //       setState(() {
-                //         _enabledVoiceInput = true;
-                //         _controller.forward();
-                //       });
-                //     },
-                //   ),
-                // )),
               ],
             ),
             Spacer(),
             _toolsOption(ToolsItem(
-              label: UILocalizations.location,
+              label: UILocalizations.collect,
               style: toolsTextStyle,
               image: _buildBtn(
                 icon: widget.locationIcon ?? ImageUtil.toolsLocation(),
@@ -220,7 +206,7 @@ class _ChatToolsViewState extends State<ChatToolsView>
       animation: _controller,
       builder: (BuildContext context, Widget? child) {
         return Transform.translate(
-          offset: Offset(0, 190.h * _animation.value),
+          offset: Offset(0, 250.h * _animation.value),
           child: Visibility(
             visible: _enabledVoiceInput,
             child: Container(

@@ -87,7 +87,7 @@ class _ChatWebViewMapState extends State<ChatWebViewMap> {
       appBar: TitleBar.back(
         context,
         height: 49.h,
-        title: UILocalizations.location,
+        title: UILocalizations.collect,
         textStyle: TextStyle(
           fontSize: 18.sp,
           color: Color(0xFF333333),

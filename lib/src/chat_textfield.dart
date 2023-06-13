@@ -12,6 +12,8 @@ class ChatTextField extends StatelessWidget {
   final ValueChanged<String>? onSubmitted;
   final TextStyle? style;
   final TextStyle? atStyle;
+  final String? hintText;
+  final TextStyle? hintStyle;
   final List<TextInputFormatter>? inputFormatters;
   final bool enabled;
 
@@ -24,6 +26,8 @@ class ChatTextField extends StatelessWidget {
     this.onSubmitted,
     this.style,
     this.atStyle,
+    this.hintText,
+    this.hintStyle,
     this.inputFormatters,
     this.enabled = true,
   }) : super(key: key);
@@ -47,11 +51,13 @@ class ChatTextField extends StatelessWidget {
       textInputAction: TextInputAction.newline,
       // onSubmitted: onSubmitted,
       decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: hintStyle,
         border: InputBorder.none,
         isDense: true,
         // contentPadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.symmetric(
-          horizontal: 4.w,
+          horizontal: 16.w,
           vertical: 8.h,
         ),
       ),

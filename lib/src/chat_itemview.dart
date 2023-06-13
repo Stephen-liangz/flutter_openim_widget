@@ -13,11 +13,6 @@ class MsgStreamEv<T> {
   final T value;
 
   MsgStreamEv({required this.msgId, required this.value});
-
-  @override
-  String toString() {
-    return 'MsgStreamEv{msgId: $msgId, value: $value}';
-  }
 }
 
 typedef CustomItemBuilder = Widget? Function(
@@ -344,7 +339,7 @@ class _ChatItemViewState extends State<ChatItemView> {
   bool get _isFromMsg => widget.message.sendID != OpenIM.iMManager.uid;
 
   bool get _checked => widget.multiList.contains(widget.message);
-  late StreamSubscription<bool> _keyboardSubs;
+   StreamSubscription<bool>? _keyboardSubs;
   StreamSubscription<bool>? _closeMenuSubs;
 
   /// 提示信息样式
@@ -358,7 +353,7 @@ class _ChatItemViewState extends State<ChatItemView> {
   @override
   void dispose() {
     _popupCtrl.dispose();
-    _keyboardSubs.cancel();
+    _keyboardSubs?.cancel();
     _closeMenuSubs?.cancel();
     super.dispose();
   }
@@ -491,7 +486,7 @@ class _ChatItemViewState extends State<ChatItemView> {
                 width: picture?.sourcePicture?.width?.toDouble(),
                 height: picture?.sourcePicture?.height?.toDouble(),
                 widgetWidth: 100.w,
-                msgSenProgressStream: widget.msgSendProgressSubject.stream,
+                msgSenProgressStream: widget.msgSendProgressSubject.stream ,
                 initMsgSendProgress: 100,
                 index: widget.index,
                 clickStream: widget.clickSubject.stream,
@@ -743,7 +738,7 @@ class _ChatItemViewState extends State<ChatItemView> {
         widget.message,
       );
 
-  Widget? _buildTimeView([String? time]) => time == null && time == null
+  Widget? _buildTimeView([String? nickName]) => nickName == null && nickName == null
       ? null
       : Container(
           padding: widget.timePadding ??
@@ -754,7 +749,7 @@ class _ChatItemViewState extends State<ChatItemView> {
           // height: 20.h,
           decoration: widget.timeDecoration,
           child: Text(
-            time!,
+            nickName!,
             style: widget.timeStyle ?? _hintTextStyle,
           ),
         );

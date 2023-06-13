@@ -20,6 +20,8 @@ class ChatInputBoxView extends StatefulWidget {
     this.onSubmitted,
     this.style,
     this.atStyle,
+    this.hintText,
+    this.hintStyle,
     this.forceCloseToolboxSub,
     this.quoteContent,
     this.onClearQuote,
@@ -55,6 +57,8 @@ class ChatInputBoxView extends StatefulWidget {
   final ChatVoiceRecordBar voiceRecordBar;
   final TextStyle? style;
   final TextStyle? atStyle;
+  final String? hintText;
+  final TextStyle? hintStyle;
   final Subject? forceCloseToolboxSub;
   final String? quoteContent;
   final Function()? onClearQuote;
@@ -311,14 +315,16 @@ class _ChatInputBoxViewState extends State<ChatInputBoxView>
         alignment: Alignment.center,
         constraints: BoxConstraints(minHeight: kVoiceRecordBarHeight),
         decoration: BoxDecoration(
-          color: Color(0xFFFFFFFF),
-          borderRadius: BorderRadius.circular(4),
+          color: Color(0xFFF9F9F9),
+          borderRadius: BorderRadius.circular(22.r),
         ),
         child: Stack(
           children: [
             ChatTextField(
               style: widget.style ?? textStyle,
               atStyle: widget.atStyle ?? atStyle,
+              hintText: widget.hintText,
+              hintStyle: widget.hintStyle,
               atCallback: widget.atCallback,
               allAtMap: widget.allAtMap,
               focusNode: widget.focusNode,

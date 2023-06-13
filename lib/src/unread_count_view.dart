@@ -30,16 +30,16 @@ class UnreadCountView extends StatelessWidget {
   Text get _text => Text(
         '${count > 99 ? '99+' : count}',
         style: TextStyle(
-          fontSize: 8.sp,
+          fontSize: 10.sp,
           color: const Color(0xFFFFFFFF),
         ),
         textAlign: TextAlign.center,
       );
 
   Decoration get _decoration => BoxDecoration(
-        color: Color(0xFFFF3366),
+        color: Color(0xFFFF4E4D),
         shape: count > 99 ? BoxShape.rectangle : BoxShape.circle,
-        borderRadius: count > 99 ? BorderRadius.circular(10.r) : null,
+        borderRadius: count > 99 ? BorderRadius.circular(44.r) : null,
         boxShadow: [
           BoxShadow(
             color: Color(0x26C61B4A),

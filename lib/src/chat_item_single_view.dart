@@ -156,7 +156,6 @@ class ChatSingleLayout extends StatelessWidget {
       crossAxisAlignment:
           isReceivedMsg ? CrossAxisAlignment.start : CrossAxisAlignment.end,
       children: [
-        messageTimeView ?? SizedBox(),
         isReceivedMsg ? _isFromWidget() : _isToWidget(),
       ],
     );

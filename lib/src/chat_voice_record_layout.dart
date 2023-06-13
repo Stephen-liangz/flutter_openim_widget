@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_openim_widget/flutter_openim_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rxdart/rxdart.dart';
 
 typedef SpeakViewChildBuilder = Widget Function(ChatVoiceRecordBar recordBar);
 
@@ -16,7 +15,6 @@ class ChatVoiceRecordLayout extends StatefulWidget {
     this.speakTextStyle,
     this.speakBarColor,
     this.maxRecordSec = 60,
-    this.onLongPressStart,
   }) : super(key: key);
 
   final SpeakViewChildBuilder builder;
@@ -24,7 +22,6 @@ class ChatVoiceRecordLayout extends StatefulWidget {
   final Function(int sec, String path)? onCompleted;
   final Color? speakBarColor;
   final TextStyle? speakTextStyle;
-  final Function()? onLongPressStart;
 
   /// 最大记录时长s
   final int maxRecordSec;
@@ -46,9 +43,6 @@ class _ChatVoiceRecordLayoutState extends State<ChatVoiceRecordLayout> {
   int _sec = 0;
   var _isInterrupt = false;
 
-  /// 被其他事件（如：音视频通话）中断，重置状态。
-  final _resetSpeakBarStatusSub = PublishSubject<bool>();
-
   @override
   void initState() {
     UILocalizations.set(widget.locale);
@@ -62,7 +56,6 @@ class _ChatVoiceRecordLayoutState extends State<ChatVoiceRecordLayout> {
 
   @override
   void dispose() {
-    _resetSpeakBarStatusSub.close();
     if (null != _timer) {
       _timer?.cancel();
       _timer = null;
@@ -70,17 +63,15 @@ class _ChatVoiceRecordLayoutState extends State<ChatVoiceRecordLayout> {
     super.dispose();
   }
 
-  ChatVoiceRecordBar _createSpeakBar() =>
-      ChatVoiceRecordBar(
+  ChatVoiceRecordBar _createSpeakBar() => ChatVoiceRecordBar(
         speakBarColor: widget.speakBarColor,
         speakTextStyle: widget.speakTextStyle,
-        resetStatusStream: _resetSpeakBarStatusSub,
         onLongPressMoveUpdate: (details) {
           Offset global = details.globalPosition;
           setState(() {
             _selectedPressArea = global.dy >= 683.h;
             _selectedCancelArea = /*global.dy >= 563.h &&*/
-            global.dy < 683.h && global.dx < 172.w;
+                global.dy < 683.h && global.dx < 172.w;
             _selectedSoundToWordArea = global.dy < 683.h && global.dx >= 172.w;
           });
         },
@@ -89,64 +80,49 @@ class _ChatVoiceRecordLayoutState extends State<ChatVoiceRecordLayout> {
         },
         onLongPressStart: (details) {
           _start();
-          widget.onLongPressStart?.call();
         },
       );
 
   @override
   Widget build(BuildContext context) {
-    return FocusDetector(
-      onVisibilityLost: () {
-        setState(() {
-          _showVoiceRecordView = false;
-          _selectedCancelArea = false;
-          _selectedSoundToWordArea = false;
-          _selectedPressArea = false;
-          _showVoiceRecordView = false;
-          _showSpeechRecognizing = false;
-          _showRecognizeFailed = false;
-          _resetSpeakBarStatusSub.add(true);
-        });
-      },
-      child: Stack(
-        children: [
-          widget.builder(_createSpeakBar()),
-          IgnorePointer(
-            ignoring: !_showRecognizeFailed,
-            child: Visibility(
-              visible: _showVoiceRecordView,
-              child: ChatRecordVoiceView(
-                selectedCancelArea: _selectedCancelArea,
-                selectedSoundToWordArea: _selectedSoundToWordArea,
-                selectedPressArea: _selectedPressArea,
-                showSpeechRecognizing: _showSpeechRecognizing,
-                showRecognizeFailed: _showRecognizeFailed,
-                onCancel: () {
-                  setState(() {
-                    _selectedCancelArea = false;
-                    _selectedSoundToWordArea = false;
-                    _selectedPressArea = true;
-                    _showVoiceRecordView = false;
-                    _showSpeechRecognizing = false;
-                    _showRecognizeFailed = false;
-                  });
-                },
-                onConfirm: () {
-                  setState(() {
-                    _callback();
-                    _selectedCancelArea = false;
-                    _selectedSoundToWordArea = false;
-                    _selectedPressArea = true;
-                    _showVoiceRecordView = false;
-                    _showSpeechRecognizing = false;
-                    _showRecognizeFailed = false;
-                  });
-                },
-              ),
+    return Stack(
+      children: [
+        widget.builder(_createSpeakBar()),
+        IgnorePointer(
+          ignoring: !_showRecognizeFailed,
+          child: Visibility(
+            visible: _showVoiceRecordView,
+            child: ChatRecordVoiceView(
+              selectedCancelArea: _selectedCancelArea,
+              selectedSoundToWordArea: _selectedSoundToWordArea,
+              selectedPressArea: _selectedPressArea,
+              showSpeechRecognizing: _showSpeechRecognizing,
+              showRecognizeFailed: _showRecognizeFailed,
+              onCancel: () {
+                setState(() {
+                  _selectedCancelArea = false;
+                  _selectedSoundToWordArea = false;
+                  _selectedPressArea = true;
+                  _showVoiceRecordView = false;
+                  _showSpeechRecognizing = false;
+                  _showRecognizeFailed = false;
+                });
+              },
+              onConfirm: () {
+                setState(() {
+                  _callback();
+                  _selectedCancelArea = false;
+                  _selectedSoundToWordArea = false;
+                  _selectedPressArea = true;
+                  _showVoiceRecordView = false;
+                  _showSpeechRecognizing = false;
+                  _showRecognizeFailed = false;
+                });
+              },
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
